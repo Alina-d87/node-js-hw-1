@@ -1,6 +1,6 @@
 # node-js-hw-1
 
-https://monosnap.com/list/638e2320e618bb55e0732d96
+
 
 node --list
 https://monosnap.com/file/ZBSPrXFrpATDVcC3y9yZAjL893uIj9
