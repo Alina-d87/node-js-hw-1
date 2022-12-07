@@ -10,6 +10,9 @@ const replaceFile = async (contacts) => {
 
 const { nanoid } = require("nanoid");
 
+const validator = require("validator");
+const { default: isEmail } = require("validator/lib/isemail");
+
 // TODO: задокументувати кожну функцію
 const listContacts = async () => {
   try {
@@ -49,8 +52,31 @@ const removeContact = async (contactId) => {
   }
 };
 
+// validator.isEmail("foo@bar.com");
+//validator.isMobilePhoneLocales;
+
 const addContact = async ({ name, email, phone }) => {
   try {
+    if (!name) {
+      return `Name is required`;
+    }
+    if (!email) {
+      return `Email is required`;
+    }
+    if (!phone) {
+      return `Phone is required`;
+    }
+
+    const isValidEmail = validator.isEmail(email);
+    if (!isValidEmail) {
+      return `Email entered incorrectly`;
+    }
+
+    const isValidPhone = validator.isMobilePhone(String(phone));
+    if (!isValidPhone) {
+      return `Phone number entered incorrectly`;
+    }
+
     const contacts = await listContacts();
     const newContact = {
       id: nanoid(),
